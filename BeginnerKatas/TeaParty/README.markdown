@@ -7,7 +7,7 @@
 >>
 >>For example:
 >>
->>  *  Jane Austen is a women, so say Hello Ms. Austen
+>>  *  Jane Austen is a woman, so say Hello Ms. Austen
 >>  *  George Orwell is a man, so say Hello Mr. Orwell
 >>  *  Isaac Newton was knighted, so say Hello Sir Newton
 >>
