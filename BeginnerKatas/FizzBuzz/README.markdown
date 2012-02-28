@@ -1,5 +1,4 @@
-FizzBuzz
-========
+#FizzBuzz Kata
 
 >It’s the summer of 1923. You and a few friends are on holiday in Goeteborg, Sweden. After one round of starköl in the Nobel Bar you start to feel funny. So you make fun of people around you – loudly. As you spot someone who has that distinct Einstein-haircut you tell him that "only two things are infinite, the universe and your stupidity, and I’m not sure about the former".
 >
@@ -11,4 +10,4 @@ FizzBuzz
 
 From: [Coding Kata .NET][]
 
-[Coding Kata .NET]: http://www.codingkata.net
+[Coding Kata .NET]: http://www.codingkata.net "Coding Kata .NET - FizzBuzz Kata"
