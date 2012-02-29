@@ -13,7 +13,7 @@ namespace TeaParty.Test.Model
         {
             // Arrange
             GoodHost host = new GoodHost();
-            Guest femaleCommoner = new Guest {LastName = "Williams", Gender = Gender.Female, Status = Status.Commoner};
+            Guest femaleCommoner = new Guest {Name = "Silvia Williams", Gender = Gender.Female, Status = Status.Commoner};
             // Act
             var greeting = host.Welcome(femaleCommoner);
             // Assert
@@ -25,7 +25,7 @@ namespace TeaParty.Test.Model
         {
             // Arrange
             GoodHost host = new GoodHost();
-            Guest femaleNoble = new Guest {LastName = "Fitzpatrick", Gender = Gender.Female, Status = Status.Noble};
+            Guest femaleNoble = new Guest {Name = "Laura Fitzpatrick", Gender = Gender.Female, Status = Status.Noble};
             // Act
             var greeting = host.Welcome(femaleNoble);
             // Assert
@@ -37,7 +37,7 @@ namespace TeaParty.Test.Model
         {
             // Arrange
             GoodHost host = new GoodHost();
-            Guest maleCommoner = new Guest { LastName = "Doe", Gender = Gender.Male, Status = Status.Commoner};
+            Guest maleCommoner = new Guest { Name = "John Doe", Gender = Gender.Male, Status = Status.Commoner};
             // Act
             var greeting = host.Welcome(maleCommoner);
             // Assert
@@ -49,7 +49,7 @@ namespace TeaParty.Test.Model
         {
             // Arrange
             GoodHost host = new GoodHost();
-            Guest maleCommoner = new Guest { LastName = "Lancelot", Gender = Gender.Male, Status = Status.Noble };
+            Guest maleCommoner = new Guest { Name = "Arthur Lancelot", Gender = Gender.Male, Status = Status.Noble };
             // Act
             var greeting = host.Welcome(maleCommoner);
             // Assert
