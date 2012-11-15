@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoStore", "VideoStore.csproj", "{8AE37CA7-9A44-4CFC-AE92-B33DCC1F6124}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoStore.Refactored", "VideoStore.Refactored\VideoStore.Refactored.csproj", "{A39EED22-3348-4C4F-BEF7-E11B39CBA1BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoStore.Refactored.UnitTests", "VideoStore.Refactored.UnitTests\VideoStore.Refactored.UnitTests.csproj", "{B91CF071-6925-48B4-BF40-0808F01116FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoStore.Original", "VideoStore.Original\VideoStore.Original.csproj", "{3314FBB2-3F28-4C6D-B245-AD6EF3E1149E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8AE37CA7-9A44-4CFC-AE92-B33DCC1F6124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AE37CA7-9A44-4CFC-AE92-B33DCC1F6124}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AE37CA7-9A44-4CFC-AE92-B33DCC1F6124}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AE37CA7-9A44-4CFC-AE92-B33DCC1F6124}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A39EED22-3348-4C4F-BEF7-E11B39CBA1BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A39EED22-3348-4C4F-BEF7-E11B39CBA1BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A39EED22-3348-4C4F-BEF7-E11B39CBA1BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A39EED22-3348-4C4F-BEF7-E11B39CBA1BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B91CF071-6925-48B4-BF40-0808F01116FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B91CF071-6925-48B4-BF40-0808F01116FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B91CF071-6925-48B4-BF40-0808F01116FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B91CF071-6925-48B4-BF40-0808F01116FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3314FBB2-3F28-4C6D-B245-AD6EF3E1149E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3314FBB2-3F28-4C6D-B245-AD6EF3E1149E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3314FBB2-3F28-4C6D-B245-AD6EF3E1149E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3314FBB2-3F28-4C6D-B245-AD6EF3E1149E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
