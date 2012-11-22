@@ -29,12 +29,12 @@ namespace VideoStore.Refactored
             rentals.Add(arg);
         }
 
-        public String statement()
+        public String Statement()
         {
             double totalAmount = 0;
             int frequentRenterPoints = 0;
             IEnumerator<Rental> rentalEnumerator = this.rentals.GetEnumerator();
-            String result = "Rental Record for " + Name + "\n";
+            String result = "Rental Record for " + Name + ".\n";
             while (rentalEnumerator.MoveNext())
             {
                 double thisAmount = 0;
@@ -64,8 +64,8 @@ namespace VideoStore.Refactored
                     result += "\t" + each.Movie.Title + "\t" + thisAmount + "\n"; totalAmount += thisAmount;
              }
             //add footer lines
-            result += "Amount owed is " + totalAmount + "\n";
-            result += "You earned " + frequentRenterPoints + " frequent renter points";
+            result += "Amount owed is " + totalAmount + ".\n";
+            result += "You earned " + frequentRenterPoints + " frequent renter points.";
             return result;
         }
 

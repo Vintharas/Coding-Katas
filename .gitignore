@@ -13,3 +13,7 @@ TestResults
 _ReSharper
 ReSharper
 *ReSharper*
+
+# Ncrunch stuff
+*.ncrunchproject
+*.ncrunchsolution
