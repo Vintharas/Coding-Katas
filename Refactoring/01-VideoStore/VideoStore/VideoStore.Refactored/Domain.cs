@@ -1,6 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 
+/*
+ * Refactoring Summary:
+ * 
+ * 1) Write tests to ensure that refactoring doesn't break functionality
+ * 2)
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+
 namespace VideoStore.Refactored
 {
     public class Movie
@@ -61,10 +74,10 @@ namespace VideoStore.Refactored
                 // add bonus for a two day new release rental
                 if ((each.Movie.PriceCode == Movie.NEW_RELEASE) && each.DaysRented > 1) frequentRenterPoints++;
                 //show figures for this rental
-                    result += "\t" + each.Movie.Title + "\t" + thisAmount + "\n"; totalAmount += thisAmount;
+                    result += "\t" + each.Movie.Title + "\t" + thisAmount + "$\n"; totalAmount += thisAmount;
              }
             //add footer lines
-            result += "Amount owed is " + totalAmount + ".\n";
+            result += "Amount owed is " + totalAmount + "$.\n";
             result += "You earned " + frequentRenterPoints + " frequent renter points.";
             return result;
         }

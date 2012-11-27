@@ -17,3 +17,5 @@ ReSharper
 # Ncrunch stuff
 *.ncrunchproject
 *.ncrunchsolution
+*ncrunchsolution*
+*NCrunch*
