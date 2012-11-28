@@ -28,10 +28,10 @@ namespace VideoStore.Refactored.UnitTests
             // Arrange
             var customer = new Customer { Name = "John Doe" };
             customer.AddRental(new Rental
-            {
-                Movie = new Movie { Title = "Cars", PriceCode = Movie.CHILDREN },
-                DaysRented = 2
-            });
+                {
+                    Movie = new Movie { Title = "Cars", PriceCode = Movie.CHILDREN },
+                    DaysRented = 2
+                });
             // Act
             string statement = customer.Statement();
             // Assert
@@ -46,10 +46,10 @@ namespace VideoStore.Refactored.UnitTests
             // Arrange
             var customer = new Customer { Name = "John Doe" };
             customer.AddRental(new Rental
-            {
-                Movie = new Movie { Title = "Cars", PriceCode = Movie.CHILDREN },
-                DaysRented = daysRented
-            });
+                {
+                    Movie = new Movie { Title = "Cars", PriceCode = Movie.CHILDREN },
+                    DaysRented = daysRented
+                });
             // Act
             string statement = customer.Statement();
             // Assert
@@ -62,10 +62,10 @@ namespace VideoStore.Refactored.UnitTests
             // Arrange
             var customer = new Customer { Name = "John Doe" };
             customer.AddRental(new Rental
-            {
-                Movie = new Movie { Title = "Cars", PriceCode = Movie.CHILDREN },
-                DaysRented = 1
-            });
+                {
+                    Movie = new Movie { Title = "Cars", PriceCode = Movie.CHILDREN },
+                    DaysRented = 1
+                });
             customer.AddRental(new Rental
                 {
                     Movie = new Movie {Title = "Cars 2", PriceCode = Movie.CHILDREN},
@@ -102,10 +102,10 @@ namespace VideoStore.Refactored.UnitTests
             // Arrange
             var customer = new Customer { Name = "John Doe" };
             customer.AddRental(new Rental
-            {
-                Movie = new Movie { Title = "Johnny Mnemonic", PriceCode = Movie.REGULAR },
-                DaysRented = daysRented
-            });
+                {
+                    Movie = new Movie { Title = "Johnny Mnemonic", PriceCode = Movie.REGULAR },
+                    DaysRented = daysRented
+                });
             // Act
             string statement = customer.Statement();
             // Assert
@@ -115,7 +115,22 @@ namespace VideoStore.Refactored.UnitTests
         [Test]
         public void Statement_WhenHavingTwoNormalMovies_ShouldGetTwoFrequentRenterPoints()
         {
-            
+            // Arrange
+            var customer = new Customer { Name = "John Doe" };
+            customer.AddRental(new Rental
+                {
+                    Movie = new Movie { Title = "Johnny Mnemonic", PriceCode = Movie.REGULAR },
+                    DaysRented = 1
+                });
+            customer.AddRental(new Rental
+                {
+                    Movie = new Movie { Title = "Terminator 2", PriceCode = Movie.REGULAR},
+                    DaysRented = 1
+                });
+            // Act
+            string statement = customer.Statement();
+            // Assert
+            Assert.That(statement, Is.EqualTo("Rental Record for John Doe.\n\tJohnny Mnemonic\t2$\n\tTerminator 2\t2$\nAmount owed is 4$.\nYou earned 2 frequent renter points."));
         }
 
         [Test]
@@ -134,5 +149,59 @@ namespace VideoStore.Refactored.UnitTests
             Assert.That(statement, Is.EqualTo("Rental Record for John Doe.\n\tSkyfall\t3$\nAmount owed is 3$.\nYou earned 1 frequent renter points."));
         }
 
+        [TestCase(arg1: 2, arg2: "6$")]
+        [TestCase(arg1: 3, arg2: "9$")]
+        [TestCase(arg1: 4, arg2: "12$")]
+        public void Statement_WhenHavingANewReleaseMovieForMoreThanADay_ShouldPenalizeWithThreeDollarsPerDay(int daysRented, string amountOwed)
+        {
+            // Arrange
+            var customer = new Customer() { Name = "John Doe" };
+            customer.AddRental(new Rental
+                {
+                    Movie = new Movie { Title = "Skyfall", PriceCode = Movie.NEW_RELEASE },
+                    DaysRented = daysRented
+                });
+            // Act
+            string statement = customer.Statement();
+            // Assert
+            Assert.That(statement, Is.EqualTo(string.Format("Rental Record for John Doe.\n\tSkyfall\t{0}\nAmount owed is {0}.\nYou earned 2 frequent renter points.", amountOwed)));
+        }
+
+        [TestCase]
+        public void Statement_WhenHavingANewReleaseMovieForMoreThanADay_ShouldGetAnExtraFrequentRenterPoint()
+        {
+            // Arrange
+            var customer = new Customer() { Name = "John Doe" };
+            customer.AddRental(new Rental
+                {
+                    Movie = new Movie { Title = "Skyfall", PriceCode = Movie.NEW_RELEASE },
+                    DaysRented = 2
+                });
+            // Act
+            string statement = customer.Statement();
+            // Assert
+            Assert.That(statement, Is.EqualTo("Rental Record for John Doe.\n\tSkyfall\t6$\nAmount owed is 6$.\nYou earned 2 frequent renter points."));
+        }
+
+        [TestCase]
+        public void Statement_WhenHavingTwoNewReleaseMovies_ShouldGetTwoFrequentRenterPoints()
+        {
+            // Arrange
+            var customer = new Customer() { Name = "John Doe" };
+            customer.AddRental(new Rental
+                {
+                    Movie = new Movie { Title = "Skyfall", PriceCode = Movie.NEW_RELEASE },
+                    DaysRented = 1
+                });
+            customer.AddRental(new Rental
+                {
+                    Movie = new Movie { Title = "Prometheus", PriceCode = Movie.NEW_RELEASE},
+                    DaysRented = 1
+                });
+            // Act
+            string statement = customer.Statement();
+            // Assert
+            Assert.That(statement, Is.EqualTo("Rental Record for John Doe.\n\tSkyfall\t3$\n\tPrometheus\t3$\nAmount owed is 6$.\nYou earned 2 frequent renter points."));
+        }
     }
 }
