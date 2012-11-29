@@ -167,7 +167,7 @@ namespace VideoStore.Refactored.UnitTests
             Assert.That(statement, Is.EqualTo(string.Format("Rental Record for John Doe.\n\tSkyfall\t{0}\nAmount owed is {0}.\nYou earned 2 frequent renter points.", amountOwed)));
         }
 
-        [TestCase]
+        [Test]
         public void Statement_WhenHavingANewReleaseMovieForMoreThanADay_ShouldGetAnExtraFrequentRenterPoint()
         {
             // Arrange
@@ -183,7 +183,7 @@ namespace VideoStore.Refactored.UnitTests
             Assert.That(statement, Is.EqualTo("Rental Record for John Doe.\n\tSkyfall\t6$\nAmount owed is 6$.\nYou earned 2 frequent renter points."));
         }
 
-        [TestCase]
+        [Test]
         public void Statement_WhenHavingTwoNewReleaseMovies_ShouldGetTwoFrequentRenterPoints()
         {
             // Arrange
@@ -203,5 +203,60 @@ namespace VideoStore.Refactored.UnitTests
             // Assert
             Assert.That(statement, Is.EqualTo("Rental Record for John Doe.\n\tSkyfall\t3$\n\tPrometheus\t3$\nAmount owed is 6$.\nYou earned 2 frequent renter points."));
         }
+
+        [Test]
+        public void Statement_WhenHavingMoviesFromDifferentCategories_ShouldGetAppropriateStatement()
+        {
+            // Arrange
+            var customer = new Customer() { Name = "John Doe" };
+            customer.AddRental(new Rental
+                {
+                    Movie = new Movie { Title = "Skyfall", PriceCode = Movie.NEW_RELEASE },
+                    DaysRented = 1
+                });
+            customer.AddRental(new Rental
+                {
+                    Movie = new Movie { Title = "The Lord Of The Rings", PriceCode = Movie.REGULAR },
+                    DaysRented = 1
+                });
+            customer.AddRental(new Rental
+                {
+                    Movie = new Movie { Title = "Brave", PriceCode = Movie.CHILDREN},
+                    DaysRented = 1
+                });
+            // Act
+            string statement = customer.Statement();
+            // Assert
+            Assert.That(statement, Is.EqualTo("Rental Record for John Doe.\n\tSkyfall\t3$\n\tThe Lord Of The Rings\t2$\n\tBrave\t1.5$\nAmount owed is 6.5$.\nYou earned 3 frequent renter points."));
+        }
+
+        [Test]
+        public void HtmlStatement_WhenHavingMoviesFromDifferentCategories_ShouldGetAppropriateStatement()
+        {
+            // Arrange
+            var customer = new Customer() { Name = "John Doe" };
+            customer.AddRental(new Rental
+            {
+                Movie = new Movie { Title = "Skyfall", PriceCode = Movie.NEW_RELEASE },
+                DaysRented = 1
+            });
+            customer.AddRental(new Rental
+            {
+                Movie = new Movie { Title = "The Lord Of The Rings", PriceCode = Movie.REGULAR },
+                DaysRented = 1
+            });
+            customer.AddRental(new Rental
+            {
+                Movie = new Movie { Title = "Brave", PriceCode = Movie.CHILDREN },
+                DaysRented = 1
+            });
+            // Act
+            string statement = customer.HtmlStatement();
+            // Assert
+            Assert.That(statement, Is.EqualTo("<h1>Rental Record for <em>John Doe</em>.</h1>" + 
+                                              "<p><ul><li>Skyfall : 3$</li><li>The Lord Of The Rings : 2$</li><li>Brave : 1.5$</li></ul></p>" + 
+                                              "<p>Amount owed is 6.5$.</p><p>You earned 3 frequent renter points.</p>"));
+        }
+
     }
 }
