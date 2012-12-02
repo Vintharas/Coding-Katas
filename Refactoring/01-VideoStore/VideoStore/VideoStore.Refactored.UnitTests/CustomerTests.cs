@@ -13,7 +13,7 @@ namespace VideoStore.Refactored.UnitTests
             var customer = new Customer { Name = "John Doe"};
             customer.AddRental(new Rental
                 {
-                    Movie = new Movie { Title = "Cars", PriceCode = Movie.CHILDREN},
+                    Movie = new Movie { Title = "Cars", PriceCode = new ChildrenPrice()},
                     DaysRented = 1
                 });
             // Act
@@ -29,7 +29,7 @@ namespace VideoStore.Refactored.UnitTests
             var customer = new Customer { Name = "John Doe" };
             customer.AddRental(new Rental
                 {
-                    Movie = new Movie { Title = "Cars", PriceCode = Movie.CHILDREN },
+                    Movie = new Movie { Title = "Cars", PriceCode = new ChildrenPrice() },
                     DaysRented = 2
                 });
             // Act
@@ -47,7 +47,7 @@ namespace VideoStore.Refactored.UnitTests
             var customer = new Customer { Name = "John Doe" };
             customer.AddRental(new Rental
                 {
-                    Movie = new Movie { Title = "Cars", PriceCode = Movie.CHILDREN },
+                    Movie = new Movie { Title = "Cars", PriceCode = new ChildrenPrice() },
                     DaysRented = daysRented
                 });
             // Act
@@ -63,12 +63,12 @@ namespace VideoStore.Refactored.UnitTests
             var customer = new Customer { Name = "John Doe" };
             customer.AddRental(new Rental
                 {
-                    Movie = new Movie { Title = "Cars", PriceCode = Movie.CHILDREN },
+                    Movie = new Movie { Title = "Cars", PriceCode = new ChildrenPrice() },
                     DaysRented = 1
                 });
             customer.AddRental(new Rental
                 {
-                    Movie = new Movie {Title = "Cars 2", PriceCode = Movie.CHILDREN},
+                    Movie = new Movie { Title = "Cars 2", PriceCode = new ChildrenPrice() },
                     DaysRented = 1
                 });
             // Act
@@ -85,7 +85,7 @@ namespace VideoStore.Refactored.UnitTests
             var customer = new Customer {Name = "John Doe"};
             customer.AddRental(new Rental
                 {
-                    Movie = new Movie {Title = "Johnny Mnemonic", PriceCode = Movie.REGULAR},
+                    Movie = new Movie {Title = "Johnny Mnemonic", PriceCode = new RegularPrice()},
                     DaysRented = 1
                 });
             // Act
@@ -103,7 +103,7 @@ namespace VideoStore.Refactored.UnitTests
             var customer = new Customer { Name = "John Doe" };
             customer.AddRental(new Rental
                 {
-                    Movie = new Movie { Title = "Johnny Mnemonic", PriceCode = Movie.REGULAR },
+                    Movie = new Movie { Title = "Johnny Mnemonic", PriceCode = new RegularPrice() },
                     DaysRented = daysRented
                 });
             // Act
@@ -119,12 +119,12 @@ namespace VideoStore.Refactored.UnitTests
             var customer = new Customer { Name = "John Doe" };
             customer.AddRental(new Rental
                 {
-                    Movie = new Movie { Title = "Johnny Mnemonic", PriceCode = Movie.REGULAR },
+                    Movie = new Movie { Title = "Johnny Mnemonic", PriceCode = new RegularPrice() },
                     DaysRented = 1
                 });
             customer.AddRental(new Rental
                 {
-                    Movie = new Movie { Title = "Terminator 2", PriceCode = Movie.REGULAR},
+                    Movie = new Movie { Title = "Terminator 2", PriceCode = new RegularPrice() },
                     DaysRented = 1
                 });
             // Act
@@ -140,7 +140,7 @@ namespace VideoStore.Refactored.UnitTests
             var customer = new Customer() {Name = "John Doe"};
             customer.AddRental(new Rental
                 {
-                    Movie = new Movie {  Title = "Skyfall", PriceCode = Movie.NEW_RELEASE},
+                    Movie = new Movie {  Title = "Skyfall", PriceCode = new NewReleasePrice()},
                     DaysRented = 1
                 });
             // Act
@@ -158,7 +158,7 @@ namespace VideoStore.Refactored.UnitTests
             var customer = new Customer() { Name = "John Doe" };
             customer.AddRental(new Rental
                 {
-                    Movie = new Movie { Title = "Skyfall", PriceCode = Movie.NEW_RELEASE },
+                    Movie = new Movie { Title = "Skyfall", PriceCode = new NewReleasePrice() },
                     DaysRented = daysRented
                 });
             // Act
@@ -174,7 +174,7 @@ namespace VideoStore.Refactored.UnitTests
             var customer = new Customer() { Name = "John Doe" };
             customer.AddRental(new Rental
                 {
-                    Movie = new Movie { Title = "Skyfall", PriceCode = Movie.NEW_RELEASE },
+                    Movie = new Movie { Title = "Skyfall", PriceCode = new NewReleasePrice() },
                     DaysRented = 2
                 });
             // Act
@@ -190,12 +190,12 @@ namespace VideoStore.Refactored.UnitTests
             var customer = new Customer() { Name = "John Doe" };
             customer.AddRental(new Rental
                 {
-                    Movie = new Movie { Title = "Skyfall", PriceCode = Movie.NEW_RELEASE },
+                    Movie = new Movie { Title = "Skyfall", PriceCode = new NewReleasePrice() },
                     DaysRented = 1
                 });
             customer.AddRental(new Rental
                 {
-                    Movie = new Movie { Title = "Prometheus", PriceCode = Movie.NEW_RELEASE},
+                    Movie = new Movie { Title = "Prometheus", PriceCode = new NewReleasePrice() },
                     DaysRented = 1
                 });
             // Act
@@ -211,17 +211,17 @@ namespace VideoStore.Refactored.UnitTests
             var customer = new Customer() { Name = "John Doe" };
             customer.AddRental(new Rental
                 {
-                    Movie = new Movie { Title = "Skyfall", PriceCode = Movie.NEW_RELEASE },
+                    Movie = new Movie { Title = "Skyfall", PriceCode = new NewReleasePrice() },
                     DaysRented = 1
                 });
             customer.AddRental(new Rental
                 {
-                    Movie = new Movie { Title = "The Lord Of The Rings", PriceCode = Movie.REGULAR },
+                    Movie = new Movie { Title = "The Lord Of The Rings", PriceCode = new RegularPrice() },
                     DaysRented = 1
                 });
             customer.AddRental(new Rental
                 {
-                    Movie = new Movie { Title = "Brave", PriceCode = Movie.CHILDREN},
+                    Movie = new Movie { Title = "Brave", PriceCode = new ChildrenPrice()},
                     DaysRented = 1
                 });
             // Act
@@ -237,17 +237,17 @@ namespace VideoStore.Refactored.UnitTests
             var customer = new Customer() { Name = "John Doe" };
             customer.AddRental(new Rental
             {
-                Movie = new Movie { Title = "Skyfall", PriceCode = Movie.NEW_RELEASE },
+                Movie = new Movie { Title = "Skyfall", PriceCode = new NewReleasePrice() },
                 DaysRented = 1
             });
             customer.AddRental(new Rental
             {
-                Movie = new Movie { Title = "The Lord Of The Rings", PriceCode = Movie.REGULAR },
+                Movie = new Movie { Title = "The Lord Of The Rings", PriceCode = new RegularPrice() },
                 DaysRented = 1
             });
             customer.AddRental(new Rental
             {
-                Movie = new Movie { Title = "Brave", PriceCode = Movie.CHILDREN },
+                Movie = new Movie { Title = "Brave", PriceCode = new ChildrenPrice() },
                 DaysRented = 1
             });
             // Act
