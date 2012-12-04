@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A39EED22-3348-4C4F-BEF7-E11B39CBA1BA}</ProjectGuid>
+    <ProjectGuid>{419E784B-2600-48CD-BAD0-E1497311857C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VideoStore.Refactored</RootNamespace>
-    <AssemblyName>VideoStore.Refactored</AssemblyName>
+    <RootNamespace>ComposingMethods.UnitTests</RootNamespace>
+    <AssemblyName>ComposingMethods.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain.cs" />
+    <Compile Include="01 - Extract Method Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
