@@ -9,7 +9,7 @@ namespace ComposingMethods
 
     /* Extract Method
      * 
-     * Problem: You have a code fragment that can be grouped together.
+     * Context: You have a code fragment that can be grouped together.
      * 
      * Refactoring: Turn the fragment into a method whose name explains the purpose of the method
      * 
@@ -75,7 +75,7 @@ namespace ComposingMethods
     }
 
 
-    // Refactored Version
+    //// Refactored Version
     // public class Barbarian : Character
     // {
     //     public string Name { get; set; }

@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="01 - Extract Method Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="02 - Replace Temp With Query Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
