@@ -56,9 +56,9 @@ namespace StringCalculatorKata
         {
             if (numbers == "")
                 return 0;
-            if (!numbers.Contains(","))
+            if (!numbers.Contains(",") && !numbers.Contains("\n"))
                 return int.Parse(numbers);
-            return Add(numbers.Split(','));
+            return Add(numbers.Split(',', '\n'));
         }
 
         private int Add(IEnumerable<string> numbers)

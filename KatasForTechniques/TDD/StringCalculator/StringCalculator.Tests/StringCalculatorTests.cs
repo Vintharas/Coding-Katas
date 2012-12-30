@@ -100,6 +100,45 @@ namespace StringCalculatorKata.Tests
             Assert.That(result, Is.EqualTo(20));
         }
 
+        [Test]
+        public void Add_WhenGivenAStringWithArgumentsSeparatedByNewLines_ShouldPerformAddition()
+        {
+            // Arrange
+            StringCalculator calculator = GetCalculator();
+            // Act
+            int result = calculator.Add(numbers: "2\n3\n1");
+            // Assert
+            Assert.That(result, Is.EqualTo(6));
+        }
+
+        [Test]
+        public void Add_WhenGivenAStringWithArgumentsSeparatedByNewLinesAndCommas_ShouldPerformAdditionOfThem()
+        {
+            // Arrange
+            StringCalculator calculator = GetCalculator();
+            // Act
+            int result = calculator.Add(numbers: "2\n3,1");
+            // Assert
+            Assert.That(result, Is.EqualTo(6));
+        }
+
+        [ExpectedException(typeof(FormatException))]
+        public void Add_WhenGivenAStringWithArgumentsAndTwoDelimitersConsecutively_ShouldThrowAnException()
+        {
+            // Arrange
+            StringCalculator calculator = GetCalculator();
+            // Act, Assert
+            int result = calculator.Add(numbers: "1,\n");
+        }
+
+        [ExpectedException(typeof (FormatException))]
+        public void Add_WhenGivenAStringWithSeveralArgumentsAndTwoDelimitersConsecutively_ShouldThrowAnException()
+        {
+            // Arrange
+            StringCalculator calculator = GetCalculator();
+            // Act, Assert
+            int result = calculator.Add(numbers: "1,\n2,3,4");
+        }
 
         private StringCalculator GetCalculator()
         {
