@@ -47,6 +47,7 @@ namespace StringCalculatorKata.Tests
             Assert.That(result, Is.EqualTo(expectedResult));
         }
 
+        [Test]
         [ExpectedException(typeof(FormatException))]
         public void Add_WhenGivenAStringWithASingleArgumentThatIsNotANumber_ShouldThrowAnException()
         {
@@ -122,6 +123,7 @@ namespace StringCalculatorKata.Tests
             Assert.That(result, Is.EqualTo(6));
         }
 
+        [Test]
         [ExpectedException(typeof(FormatException))]
         public void Add_WhenGivenAStringWithArgumentsAndTwoDelimitersConsecutively_ShouldThrowAnException()
         {
@@ -131,6 +133,7 @@ namespace StringCalculatorKata.Tests
             int result = calculator.Add(numbers: "1,\n");
         }
 
+        [Test]
         [ExpectedException(typeof (FormatException))]
         public void Add_WhenGivenAStringWithSeveralArgumentsAndTwoDelimitersConsecutively_ShouldThrowAnException()
         {
@@ -139,6 +142,57 @@ namespace StringCalculatorKata.Tests
             // Act, Assert
             int result = calculator.Add(numbers: "1,\n2,3,4");
         }
+
+        [Test]
+        public void Add_WhenGivenADelimiterAtTheBeginningOfTheStringOfNumber_ShouldEnableUsingThisDelimiter()
+        {
+            // Arrange
+            var delimiterContainer = "//[{0}]\n";
+            var delimiter = ";";
+            var delimiterPrefix = string.Format(delimiterContainer, delimiter);
+            StringCalculator calculator = GetCalculator();
+            // Act
+            int result = calculator.Add(numbers: delimiterPrefix + "2;3");
+            // Assert
+            Assert.That(result, Is.EqualTo(5));
+        }
+
+        [Test]
+        public void Add_WhenGivenADelimiterAtTheBeginningOfTheStringOfNumber_ShouldEnableUsingThisOtherDelimiter()
+        {
+            // Arrange
+            var delimiterContainer = "//[{0}]\n";
+            var delimiter = "***";
+            var delimiterPrefix = string.Format(delimiterContainer, delimiter);
+            StringCalculator calculator = GetCalculator();
+            // Act
+            int result = calculator.Add(numbers: delimiterPrefix + "2***3***2");
+            // Assert
+            Assert.That(result, Is.EqualTo(7));
+        }
+
+        [Test]
+        [ExpectedException(typeof(NegativeNumbersNotAllowedException), ExpectedMessage = "Negative numbers not allowed: -5")]
+        public void Add_WhenAddingNumbersAndOneOfThemIsNegative_ShouldThrowANegativeNumbersNotAllowedExceptionAndShowTheNegativeNumberInTheExceptionMessage()
+        {
+            // Arrange
+            StringCalculator calculator = GetCalculator();
+            // Act, Assert
+            int result = calculator.Add(numbers: "1,2,-5");
+        }
+
+        [Test]
+        [ExpectedException(typeof(NegativeNumbersNotAllowedException), ExpectedMessage = "Negative numbers not allowed: -5,-1,-2,-3")]
+        public void Add_WhenAddingNumbersAndSeveralOfThemAreNegative_ShouldThrowANegativeNumbersNotAllowedExceptionAndShowTheNegativeNumbersInTheExceptionMessage()
+        {
+            // Arrange
+            StringCalculator calculator = GetCalculator();
+            // Act, Assert
+            int result = calculator.Add(numbers: "1,2,-5,-1,-2,-3");
+        }
+
+
+
 
         private StringCalculator GetCalculator()
         {

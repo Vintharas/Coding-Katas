@@ -45,25 +45,69 @@
  */
 
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace StringCalculatorKata
 {
     public class StringCalculator
     {
+        private const string NEGATIVE_NUMBERS_MESSAGE = "Negative numbers not allowed: {0}";
+        private const string CUSTOM_DELIMITER_PATTERN = "//[{0}]\n";
+        private const string RIGHT_BRACKET = "//[";
+        private const string LEFT_BRACKET = "]\n";
+
         public int Add(string numbers)
         {
+            var customDelimiter = "";
             if (numbers == "")
                 return 0;
-            if (!numbers.Contains(",") && !numbers.Contains("\n"))
+            if (numbers.HaveCustomDelimiter())
+            {
+                customDelimiter = ExtractDelimiter(numbers);
+                numbers = numbers.Replace(string.Format(CUSTOM_DELIMITER_PATTERN, customDelimiter), "");
+            }
+            else if (numbers.ContainsOnlyOneNumber())
                 return int.Parse(numbers);
-            return Add(numbers.Split(',', '\n'));
+            return Add(numbers.Split(new string[]{",", "\n", customDelimiter}, options: StringSplitOptions.None));
+        }
+
+        private string ExtractDelimiter(string numbers)
+        {
+            var match = Regex.Match(numbers, "^//\\[.*\\]\n");
+            return match.Value.Replace(RIGHT_BRACKET, "").Replace(LEFT_BRACKET, "");
         }
 
         private int Add(IEnumerable<string> numbers)
         {
+            if (numbers.HaveNegativeNumbers())
+                throw new NegativeNumbersNotAllowedException(negativeNumbers: ExtractNegativeNumbers(numbers));
             return numbers.Sum(operand => int.Parse(operand));
+        }
+
+        private IEnumerable<int> ExtractNegativeNumbers(IEnumerable<string> numbers)
+        {
+            return numbers.Select(n => int.Parse(n)).Where(n => n < 0).ToList();
+        }
+    }
+
+    public static class StringExtensionMethods
+    {
+        public static bool ContainsOnlyOneNumber(this string numbers)
+        {
+            return !numbers.Contains(",") && !numbers.Contains("\n");
+        }
+
+        public static bool HaveCustomDelimiter(this string numbers)
+        {
+            return Regex.Match(numbers, "^//\\[.*\\]\n").Success;
+        }
+
+        public static bool HaveNegativeNumbers(this IEnumerable<string> numbers)
+        {
+            return numbers.Any(n => int.Parse(n) < 0);
         }
     }
 }
