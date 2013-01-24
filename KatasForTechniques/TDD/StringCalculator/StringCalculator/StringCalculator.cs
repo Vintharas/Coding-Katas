@@ -84,7 +84,14 @@ namespace StringCalculatorKata
         {
             if (numbers.HaveNegativeNumbers())
                 throw new NegativeNumbersNotAllowedException(negativeNumbers: ExtractNegativeNumbers(numbers));
-            return numbers.Sum(operand => int.Parse(operand));
+            return numbers.Select(int.Parse).Select(RemoveNumbersBiggerThanAThousand).Sum();
+        }
+
+        private int RemoveNumbersBiggerThanAThousand(int operand)
+        {
+            if (operand >= 1000)
+                return 0;
+            return operand;
         }
 
         private IEnumerable<int> ExtractNegativeNumbers(IEnumerable<string> numbers)

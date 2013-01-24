@@ -191,6 +191,18 @@ namespace StringCalculatorKata.Tests
             int result = calculator.Add(numbers: "1,2,-5,-1,-2,-3");
         }
 
+        [Test]
+        public void Add_WhenAddingNumbersBiggerThanAThousand_ShouldIgnoreTheseNumbers()
+        {
+            // Arrange
+            StringCalculator calculator = GetCalculator();
+            // Act
+            int result = calculator.Add(numbers: "1,2,1000");
+            // Assert
+            Assert.That(result, Is.EqualTo(3));
+        }
+
+
 
 
 
