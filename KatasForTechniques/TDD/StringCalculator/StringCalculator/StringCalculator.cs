@@ -48,6 +48,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace StringCalculatorKata
@@ -61,23 +62,38 @@ namespace StringCalculatorKata
 
         public int Add(string numbers)
         {
-            var customDelimiter = "";
+            var customDelimiters = new List<string>();
             if (numbers == "")
                 return 0;
-            if (numbers.HaveCustomDelimiter())
+            if (numbers.HaveCustomDelimiters())
             {
-                customDelimiter = ExtractDelimiter(numbers);
-                numbers = numbers.Replace(string.Format(CUSTOM_DELIMITER_PATTERN, customDelimiter), "");
+                customDelimiters = ExtractDelimiters(numbers);
+                numbers = numbers.Replace(GetHeader(customDelimiters), "");
             }
             else if (numbers.ContainsOnlyOneNumber())
                 return int.Parse(numbers);
-            return Add(numbers.Split(new string[]{",", "\n", customDelimiter}, options: StringSplitOptions.None));
+            List<string> allDelimiters = new List<string> {",", "\n"};
+            allDelimiters.AddRange(customDelimiters);
+            return Add(numbers.Split(allDelimiters.ToArray(), options: StringSplitOptions.None));
         }
 
-        private string ExtractDelimiter(string numbers)
+        private string GetHeader(List<string> customDelimiters)
         {
-            var match = Regex.Match(numbers, "^//\\[.*\\]\n");
-            return match.Value.Replace(RIGHT_BRACKET, "").Replace(LEFT_BRACKET, "");
+            StringBuilder sb = new StringBuilder();
+            sb.Append(RIGHT_BRACKET);
+            sb.Append(string.Join(separator: "][", values: customDelimiters));
+            sb.Append(LEFT_BRACKET);
+            return sb.ToString();
+        }
+
+        private List<string> ExtractDelimiters(string numbers)
+        {
+            var matchs = new List<string>();
+            var match = Regex.Match(numbers, "^//\\[.+\\]\n");
+            if (match.Success)
+                 matchs.AddRange(
+                     match.Value.Replace(RIGHT_BRACKET, "").Replace(LEFT_BRACKET, "").Split(new string[] {"]["}, options: StringSplitOptions.RemoveEmptyEntries));
+            return matchs;
         }
 
         private int Add(IEnumerable<string> numbers)
@@ -107,9 +123,9 @@ namespace StringCalculatorKata
             return !numbers.Contains(",") && !numbers.Contains("\n");
         }
 
-        public static bool HaveCustomDelimiter(this string numbers)
+        public static bool HaveCustomDelimiters(this string numbers)
         {
-            return Regex.Match(numbers, "^//\\[.*\\]\n").Success;
+            return Regex.Match(numbers, "^//(\\[.*\\])*\n").Success;
         }
 
         public static bool HaveNegativeNumbers(this IEnumerable<string> numbers)

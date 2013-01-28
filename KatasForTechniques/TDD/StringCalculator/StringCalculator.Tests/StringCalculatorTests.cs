@@ -158,20 +158,6 @@ namespace StringCalculatorKata.Tests
         }
 
         [Test]
-        public void Add_WhenGivenADelimiterAtTheBeginningOfTheStringOfNumber_ShouldEnableUsingThisOtherDelimiter()
-        {
-            // Arrange
-            var delimiterContainer = "//[{0}]\n";
-            var delimiter = "***";
-            var delimiterPrefix = string.Format(delimiterContainer, delimiter);
-            StringCalculator calculator = GetCalculator();
-            // Act
-            int result = calculator.Add(numbers: delimiterPrefix + "2***3***2");
-            // Assert
-            Assert.That(result, Is.EqualTo(7));
-        }
-
-        [Test]
         [ExpectedException(typeof(NegativeNumbersNotAllowedException), ExpectedMessage = "Negative numbers not allowed: -5")]
         public void Add_WhenAddingNumbersAndOneOfThemIsNegative_ShouldThrowANegativeNumbersNotAllowedExceptionAndShowTheNegativeNumberInTheExceptionMessage()
         {
@@ -202,7 +188,47 @@ namespace StringCalculatorKata.Tests
             Assert.That(result, Is.EqualTo(3));
         }
 
+        [Test]
+        public void Add_WhenGivenADelimiterAtTheBeginningOfTheStringOfNumbersLongerThanACharacter_ShouldEnableUsingThisOtherDelimiter()
+        {
+            // Arrange
+            var delimiterContainer = "//[{0}]\n";
+            var delimiter = "***";
+            var delimiterPrefix = string.Format(delimiterContainer, delimiter);
+            StringCalculator calculator = GetCalculator();
+            // Act
+            int result = calculator.Add(numbers: delimiterPrefix + "2***3***2");
+            // Assert
+            Assert.That(result, Is.EqualTo(7));
+        }
 
+        [Test]
+        public void Add_WhenGivenTwoDelimitersAtTheBeginningOfTheStringOfNumbers_ShouldEnableUsingTheseOtherDelimiters()
+        {
+            // Arrange
+            var delimitersContainer = "//[{0}][{1}]\n";
+            var aDelimiter = "*";
+            var anotherDelimiter = "%";
+            var delimitersPrefix = string.Format(delimitersContainer, aDelimiter, anotherDelimiter);
+            StringCalculator calculator = GetCalculator();
+            // Act
+            int result = calculator.Add(numbers: delimitersPrefix + "1*3%2");
+            // Assert
+            Assert.That(result, Is.EqualTo(6));
+        }
+
+        [Test]
+        public void Add_WhenGivenMultipleDelimitersAtTheBeginningOfTheStringOfNumbers_ShouldEnableUsingTheseOtherDelimiters()
+        {
+            // Arrange
+            var delimitersContainer = "//[{0}][{1}][{2}][{3}]\n";
+            var delimitersPrefix = string.Format(delimitersContainer, ";", ":", "*", "%");
+            StringCalculator calculator = GetCalculator();
+            // Act
+            int result = calculator.Add(numbers: delimitersPrefix + "1%1;1:1:1*1*1%1");
+            // Assert
+            Assert.That(result, Is.EqualTo(8));
+        }
 
 
 
