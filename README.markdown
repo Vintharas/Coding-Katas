@@ -1,16 +1,20 @@
 # Vintharas' Coding Katas Collection
 
-## Katas By Complexity
-### Beginner
+## Katas
+
+### Katas By Complexity
+#### Beginner
 
   -  FizzBuzz
   -  TeaParty
 
-## Katas for Specific Techniques
-### TDD
+### Katas for Specific Techniques
+#### TDD
 
   - String Calculator
 
+### Katas for Data Structures
+### Katas for Algorithms
 
 ## Books
 
@@ -22,6 +26,7 @@
   -  [CodeKata][]
   -  [Coding Kata .NET][]
   -  [CodeKatas.org][]
+  -  [Craking the Code Interview at GitHub](https://github.com/gaylemcd/ctci)
 
 
 

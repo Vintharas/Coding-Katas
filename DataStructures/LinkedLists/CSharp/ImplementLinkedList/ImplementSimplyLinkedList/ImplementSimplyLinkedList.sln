@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImplementSimplyLinkedList", "ImplementSimplyLinkedList.csproj", "{34C16E8F-45C9-4C3E-AAA3-9F8602B44EDE}"
+EndProject
+Global
+	GlobalSection(CodealikeProperties) = postSolution
+		SolutionGuid = 25907167-3d14-4d13-940f-1f8b03a8bd9c
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34C16E8F-45C9-4C3E-AAA3-9F8602B44EDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34C16E8F-45C9-4C3E-AAA3-9F8602B44EDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34C16E8F-45C9-4C3E-AAA3-9F8602B44EDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34C16E8F-45C9-4C3E-AAA3-9F8602B44EDE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
